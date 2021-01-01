@@ -388,7 +388,7 @@ module.exports = (bot, db) => {
 
     //test group = -1001293118439, test channel = -1001451172774
     //bookcrush group = -1001497963829, bookcrush channel = -1001179445761
-    const chatID = -1001497963829
+    const chatID = -1001311830829
     const channelId = -1001179445761
     const query = { chat_id: chatID, channel_id: channelId, channel_message_id: messageId }
     /*sleep(100).then(() => { 
@@ -418,7 +418,7 @@ module.exports = (bot, db) => {
 
     sleep(500).then(() => {
 
-      ctx.telegram.sendMessage(sendPM, `<i>Your <a href="${originalRequest}">Request</a> has been fulfilled. Follow the link to your request and Search 🔎 to download your fulfilled book.\n\nTip: Search with "@" in the search bar to see all your tags</i>`, { parse_mode: "HTML" }).catch(err => {
+      ctx.telegram.sendMessage(sendPM, `<i>Your <a href="${originalRequest}">Request</a> has been fulfilled. Follow the link to your request and Search 🔎 to download your fulfilled movie/series.\n\nTip: Search with "@" in the search bar to see all your tags</i>`, { parse_mode: "HTML" }).catch(err => {
         if (err.code !== 200)
           return ctx.answerCbQuery(`Tagged in Group ✅   PM Alert 🚫`);
         else
@@ -436,7 +436,7 @@ module.exports = (bot, db) => {
 
           const markup = Markup.inlineKeyboard([
             //bot.inlineButton('🔗 Reddit', { url: `https://www.reddit.com${redditPost.permalink}` }),
-            Markup.urlButton('PM me for alerts','https://t.me/BookCrushMgrBot'),
+            Markup.urlButton('PM me for alerts','https://t.me/CinemaCrushMgrBot'),
             Markup.callbackButton('🗑 (admins only)', 'callback_delete'
             ),
             
@@ -444,7 +444,7 @@ module.exports = (bot, db) => {
 
           //var delmessage;
           //async () => {
-            delmessage = ctx.telegram.sendMessage(-1001497963829, `Hey [${first}](tg://user?id=${sendPM}) 👋, Here's your requested book. Happy Reading/Listening!`, {
+            delmessage = ctx.telegram.sendMessage(-1001311830829, `Hey [${first}](tg://user?id=${sendPM}) 👋, Here's your requested movie/series. Happy Watching!`, {
             parse_mode: 'Markdown', disable_web_page_preview: true, reply_markup: markup
           })
           /*console.log(delmessage)
@@ -462,7 +462,7 @@ module.exports = (bot, db) => {
   )
 
   bot.action('callback_delete', async ctx => {
-    ctx.telegram.getChatMember(-1001497963829, ctx.from.id).then(function(chatMember) { 
+    ctx.telegram.getChatMember(-1001311830829, ctx.from.id).then(function(chatMember) { 
       if (chatMember.status == "administrator" || chatMember.status == "creator")
         ctx.deleteMessage();
       else
